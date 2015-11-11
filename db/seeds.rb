@@ -17,6 +17,28 @@ posts = Post.all
   	)
 end
 
+
+#Post.find_or_create_by(title: "UNIQUE TITLE", body: "UNIQUE BODY")
+
+#Comment.find_or_create_by{post_id: Post.find_or_create_by(title: "UNIQUE TITLE", body: This is my comment!)}
+
+#Comment.find_or_create_by(post_id: "UNIQUE TITLE", body: This is my comment!)
+
+puts "#{Post.count}"
+Post.find_or_create_by(
+  title: "This is the unique post!",
+  body: "This is where I would put the info about this!"
+)
+puts "#{Post.count}"
+
+puts "#{Comment.count}"
+Comment.find_or_create_by(
+  post_id: Post.find_by(title: "This is the unique post!", body: "Lot's of comments!"),
+  body: "This is extra!"
+)
+puts "#{Comment.count}"
+
+
 puts "Seed finished"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
